@@ -39,7 +39,7 @@ void main() {
                 break;
             case 2:
                 system("cls");
-                //studentRecord();
+                studentRecord();
                 printf("\n\t\t\tPress any key to continue...");
                 getch();
                 break;
@@ -104,6 +104,29 @@ void addStudent() {
         scanf(" %c", &another);
 
     } while (another == 'y' || another == 'Y');
+}
+void studentRecord(){
+    FILE *fp;
+    struct student info;
+    fp=fopen("Student_info.txt","r");
+    printf("\t\t\t\t======Student Records========\n\n\n");
+    if(fp==NULL){
+        fprintf(stderr,"\t\t\t\tCan't open file\n");
+    }
+    else{
+        printf("\t\t\t\tRecords\n");
+        printf("\t\t\t\t------------\n\n\n");
+    }
+    while(fread(&info,sizeof(struct student),1,fp)){
+        printf("\n\t\t\t\tStudent name   : %s %s",info.first_name,info.last_name);
+        printf("\n\t\t\t\tRoll no        :%d",info.roll_no);
+        printf("\n\t\t\t\tClass          :%s",info.Class);
+        printf("\n\t\t\t\tAddress        :%s",info.vill);
+        printf("\n\t\t\t\tPercentage     :%f",info.per);
+        printf("\n\t\t\t\t------------------------------------\n");
+    }
+    fclose(fp);
+    getch();
 }
 
  
