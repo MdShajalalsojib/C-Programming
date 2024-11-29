@@ -45,7 +45,7 @@ void main() {
                 break;
             case 3:
                 system("cls");
-                //searchStudent();
+                searchStudent();
                 printf("\n\t\t\tPress any key to continue...");
                 getch();
                 break;
@@ -127,6 +127,28 @@ void studentRecord(){
     }
     fclose(fp);
     getch();
+}
+void searchStudent(){
+    FILE *fp;
+    struct student info;
+    int roll_no,found=0;
+    fp=fopen("student_info","r");
+    printf("\t\t\t\t======== Search Student =======\n\n\n");
+    printf("\t\t\tEnter roll no :");
+    scanf("%d",&roll_no);
+      while(fread(&info,sizeof(struct student),1,fp)){
+        printf("\n\t\t\t\t\tStudent Name     : %s %s",info.first_name,info.last_name);
+        printf("\n\t\t\t\t\tRoll No          : %d",info.roll_no);
+        printf("\n\t\t\t\t\tClass            : %s",info.Class);
+        printf("\n\t\t\t\t\tAddress          :%s",info.vill);
+        printf("\n\t\t\t\t\tPercentage       :%f",info.per);
+
+      }
+      if(!found){
+        printf("\t\t\tRecord not found.");
+      }
+      fclose(fp);
+      getch();
 }
 
  
