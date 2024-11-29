@@ -68,3 +68,38 @@ void main(){
         }
     }
 }
+void addstudent(){
+    char another;
+    FILE *fp;
+    struct student info;
+        do{
+            clrscr();
+            printf("\t\t\t\t======Add Student info=====\n\n\n");
+            fp=fopen("student_info.txt","a");
+            printf("\n\t\t\t\tEnter first name : ");
+            scanf("%s",&info.first_name);
+            printf("\n\t\t\t\tEnter last name : ");
+            scanf("%s",&info.last_name);
+            printf("\n\t\t\tEnter roll no : ");
+            scanf("%d",&info.roll_no);
+            printf("\n\t\t\tEnter Class : ");
+            scanf("%d",&info.Class);
+            printf("\n\t\t\tEnter address : ");
+            scanf("%d",&info.vill);
+            printf("\n\t\t\tEnter percentage : ");
+            scanf("%d",&info.per);
+            printf("\n\t\t\t----------------------------\n");
+            if(fp==NULL){
+                fprintf(stderr,"\t\t\tCan't open file\n");
+
+            }else{
+                printf("\t\t\tRecord stored successfuly\n");
+            }
+            fwrite(&info,sizeof(struct student),1,fp);
+            fclose(fp);
+            printf("\t\t\tDo you want to add another record?(y/n) : ");
+            scanf("%s",&another);
+
+        }while(another=='y'||another=='Y');
+        
+}
