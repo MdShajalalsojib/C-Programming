@@ -51,7 +51,7 @@ void main() {
                 break;
             case 4:
                 system("cls");
-                //deleteRecord();
+                deleteRecord();
                 printf("\n\t\t\tPress any key to continue...");
                 getch();
                 break;
@@ -149,6 +149,45 @@ void searchStudent(){
       }
       fclose(fp);
       getch();
+}
+void deleteRecord(){
+    FILE *fp,*fp1;
+    struct student info;
+    int roll_no,found=0;
+    printf("\t\t\t\t\t\t==========Delete Search Student Record ==========\n\n\n\n");
+    fp=fopent("Student_info","r");
+    fp=fopen("temp.txt","w");
+    printf("\t\t\t\t\tEnter roll no  : ");
+    scanf("%d",roll_no);
+
+    if(fp==NULL){
+        fprintf(stderr,"\t\t\t\t Can't open file\n");
+
+    }
+    while(fread(&info,sizeof(struct student),1,fp))
+    {
+        fi(info.roll_no==roll_no)
+        {
+                found=1;
+        }
+             
+        
+        else{
+            fwrite(&info,sizefo(struct student),1,fp1);
+        }
+    }
+    fclose(fp);
+    fclose(fp1);
+       if(found){
+        remove("Student_info");
+        rename("temp.txt","student_info");
+        printf("\n\t\t\t\tRecord deleted successfully\n");
+       }
+       if(!found){
+        printf("\n\t\t\t\tRecord not found\n");
+       }
+       getch();
+    
 }
 
  
